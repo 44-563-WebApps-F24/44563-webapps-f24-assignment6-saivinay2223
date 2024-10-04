@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang>
+<head>
+    <title>Guess the Color - vinay bikki</title>
+    <script>
+        let attempts = 0;
+        let wrong = 0;
+
+        function processColor() {
+            const secretColor = document.getElementById('secretColor').value.toLowerCase();
+            const guessColor = document.getElementById('guessColor').value.toLowerCase();
+
+            attempts++;
+            if (secretColor !== guessColor) {
+                wrong++;
+                alert("That was not it");
+            } else {
+                alert("You got it!");
+            }
+
+            document.getElementById('results').innerHTML = `Attempts: ${attempts}, Wrong guesses: ${wrong}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Guess the Color - vinay bikki</h1>
+    <form>
+        <label for="secretColor">Guess the color:</label>
+        <input type="password" id="secretColor" value="Red"><br>
+
+        <label for="guessColor">Enter a guess:</label>
+        <input type="text" id="guessColor"><br>
+
+        <button type="button" onclick="processColor()">Check the color</button>
+    </form>
+
+    <p id="results"></p>
+</body>
+</html>

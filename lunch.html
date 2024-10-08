@@ -25,7 +25,25 @@
     
             document.getElementById('result').innerHTML = JSON.stringify(my_lunch);
         }
-    </script>
-    
+    </script><form>
+    <label for="property">Enter property:</label>
+    <input type="text" id="property" value="entree">
+    <br><br>
+    <label for="value">Set it to:</label>
+    <input type="text" id="value">
+    <br><br>
+    <button type="button" onclick="updateLunch()">Update the lunch</button>
+</form>
+<p id="result"></p>
+
+<script>
+    function updateLunch() {
+        const property = document.getElementById('property').value;
+        const value = document.getElementById('value').value;
+        
+        my_lunch[property] = value;
+        document.getElementById('result').innerHTML = JSON.stringify(my_lunch);
+    }
+</script>    
 </body>
 </html>    

@@ -1,42 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Radio Button Calculations</title>
-    <script>
-        function processRadio() {
-            const first = parseFloat(document.getElementById('firstNumber').value);
-            const second = parseFloat(document.getElementById('secondNumber').value);
-            let result = 0;
-
-            const selected = document.querySelector('input[name="operation"]:checked').value;
-            if (selected === 'max') {
-                result = Math.max(first, second);
-            } else if (selected === 'min') {
-                result = Math.min(first, second);
-            } else if (selected === 'avg') {
-                result = (first + second) / 2;
-            } else if (selected === 'geo') {
-                result = Math.sqrt(first * second);
-            }
-
-            document.getElementById('result').innerHTML = `Computed ${selected}: ${result}`;
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined: Powers and Radio Calculations</title>
 </head>
 <body>
-    <h1>Radio Button Calculations</h1>
+    <h1>Combined Looping Computation and Radio Button Calculations</h1>
+    
+    <!-- Part 5: Looping Computation -->
+    <h2>Looping Computation: Power Sum</h2>
     <form>
-        <label for="firstNumber">Enter a number:</label>
-        <input type="number" id="firstNumber" value="5"><br>
+        <label for="first">Enter a number:</label>
+        <input type="number" id="first" value="2">
+        <br><br>
+        <label for="second">Enter another number:</label>
+        <input type="number" id="second" value="12">
+        <br><br>
+        <button type="button" onclick="powerSum()">Compute Power Sum</button>
+    </form>
+    <p id="powerResult"></p>
 
-        <label for="secondNumber">Enter a number:</label>
-        <input type="number" id="secondNumber" value="10"><br>
-
+    <!-- Part 6: Radio Button Group -->
+    <h2>Radio Button Calculations</h2>
+    <form>
         <input type="radio" name="operation" value="max" onclick="processRadio()"> Max<br>
         <input type="radio" name="operation" value="min" onclick="processRadio()"> Min<br>
         <input type="radio" name="operation" value="avg" onclick="processRadio()"> Average<br>
         <input type="radio" name="operation" value="geo" onclick="processRadio()"> Geometric Mean<br>
     </form>
-    <p id="result"></p>
+    <p id="radioResult"></p>
+
+    <script>
+        // Part 5: Function to compute the sum of powers
+        function powerSum() {
+            const first = parseInt(document.getElementById('first').value);
+            const second = parseInt(document.getElementById('second').value);
+            let sum = 0;
+
+            for (let i = 0; i < first; i++) {
+                sum += second ** i;
+            }
+
+            document.getElementById('powerResult').innerHTML = `Sum of ${first} powers with base ${second} is ${sum}`;
+        }
+
+        // Part 6: Function to process radio button selection and perform calculation
+        function processRadio() {
+            const first = parseFloat(document.getElementById('first').value);
+            const second = parseFloat(document.getElementById('second').value);
+            let result = 0;
+
+            const selected = document.querySelector('input[name="operation"]:checked').value;
+            switch (selected) {
+                case "max":
+                    result = Math.max(first, second);
+                    break;
+                case "min":
+                    result = Math.min(first, second);
+                    break;
+                case "avg":
+                    result = (first + second) / 2;
+                    break;
+                case "geo":
+                    result = Math.sqrt(first * second);
+                    break;
+            }
+
+            document.getElementById('radioResult').innerHTML = `Computed ${selected} with values ${first} and ${second}: ${result}`;
+        }
+    </script>
 </body>
 </html>
